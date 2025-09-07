@@ -6,6 +6,12 @@ import tkinter.filedialog as fd
 import PIL.Image
 # Pillowの画像をTkinterで表示できる形式(PhotoImage)に変換
 import PIL.ImageTk
+# scikit-learn(sklearn)に存在するデータをインポート
+import sklearn.datasets
+# sklearnのSVM(データを分類して境界線を引くためのアルゴリズム)をインポート
+import sklearn.svm
+# Numpy(Pythonで数値計算を行うためのライブラリ)をインポート
+import numpy
 
 # 画像ファイルのパスを受け取る関数を定義。
 def imageToData(filename):
