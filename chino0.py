@@ -57,6 +57,8 @@ def openFile():
     # 何かしら選ばれていれば(=空でなければ)、先ほどのimageToDataを呼び出して表示
     if fpath:
         data = imageToData(fpath)
+        # 数字を予測する
+        predictDigits(data)
 
 # アプリのメインウィンドウを作成
 root = tk.Tk()
