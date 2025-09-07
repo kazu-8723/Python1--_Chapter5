@@ -48,7 +48,7 @@ def predictDigits(data):
     clf.fit(digits.data, digits.target)
     # 予測結果の表示
     n = clf.predict([data])
-    textLabel.configure(text = "この画像は" + str(n) + "です")
+    textLabel.configure(text = "この画像は"+str(n)+"です")
 
 # ボタンから呼ばれる関数を定義
 def openFile():
