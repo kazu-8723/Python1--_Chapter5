@@ -39,6 +39,16 @@ def imageToData(filename):
     # 戻り値として返す
     return numImage
 
+# 数字を予測
+def predictDigits(data):
+    # 学習用データを読み込む
+    digits = sklearn.datasets.load_digits()
+    # 機械学習する
+    clf = sklearn.svm.SVC(gamma = 0.001)
+    clf.fit(digits.data, digits.target)
+    # 予測結果の表示
+    n = clf.predict([data])
+    textLabel.configure(text = "この画像は" + str(n) + "です")
 
 # ボタンから呼ばれる関数を定義
 def openFile():
