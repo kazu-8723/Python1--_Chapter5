@@ -11,10 +11,18 @@ import numpy
 def imageToData(filename):
     # 画像を8x8のグレースケールに変換
     grayImage = PIL.Image.open(filename).convert("L")
+    # 画像を 8×8 ピクセルに縮小。LANCZOS は高品質な縮小用フィルタ。
     grayImage = grayImage.resize((8, 8), PIL.Image.Resampling.LANCZOS)
-    # 数値リストに変換
+    # Pillowの画像をNumPy配列(浮動小数)に変換。
     numImage = numpy.asarray(grayImage, dtype = float)
+    '''
+    画素値（0〜255）を 0〜16 の整数 にスケーリングし、さらに黒ほど値が大きくなるよう反転。
+    17 * 値 / 256 → 0〜16.9… を floor で 0〜16 に。
+    16 - (...) によって、黒(0)→16, 白(255)→0。
+    これは scikit-learn の digits データセット（8×8, 画素値 0〜16, 濃いほど大）と同じ表現に合わせるため。
+    '''
     numImage = 16 - numpy.floor(17 * numImage / 256)
+    # (8, 8)を1次元(長さ64)のベクトルに平坦化。SVMに渡せる形にする。
     numImage = numImage.flatten()
     # 戻り値として返す
     return numImage
