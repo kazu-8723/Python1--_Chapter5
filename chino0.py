@@ -67,12 +67,16 @@ root.geometry("400x400")
 
 # 置く場所はroot、ボタンの表示文字は"ファイルを開く"、クリックされたらopenFile関数が呼ばれるボタンの作成
 btn = tk.Button(root, text = "ファイルを開く", command = openFile)
-#
+# 画像を表示するラベルを作成
 imageLabel = tk.Label()
 
 # packという配置マネージャで、ウィジェットを順に縦へ並べる(記述した順に配置される)
 btn.pack()
 imageLabel.pack()
+
+# 予測結果を表示するラベル
+textLabel = tk.Label(text = "手書きの数字を認識します")
+textLabel.pack()
 
 # イベントループの開始
 tk.mainloop()
